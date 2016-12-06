@@ -54,6 +54,8 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        logsTextArea.positionCaret(logsTextArea.getLength());
     }
 
     private void showJson() {
