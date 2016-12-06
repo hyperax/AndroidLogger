@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <TextArea fx:id="logsTextArea" prefHeight="267.0" prefWidth="533.0" promptText="Здесь будет лог" />
-      <HBox prefHeight="0.0" prefWidth="533.0" GridPane.rowIndex="3">
-         <children>
-            <TextField fx:id="commandTextField" prefHeight="25.0" prefWidth="289.0" promptText="Команда для получения логов" text="adb logcat -d -n 100 -r 500">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
-            <Button fx:id="listenLogButton" mnemonicParsing="false" onAction="#handleAction" text="Listen">
-               <HBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="convertToJsonButton" mnemonicParsing="false" onAction="#handleAction" text="JSON">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <TextField fx:id="prefixTextField" promptText="Строка для обрезки (прим. 12-06 05:38:57.454 1672-1755/ru.ireca.menu D/FA:)" GridPane.rowIndex="2" />
-      <TextField fx:id="webQueryTextField" promptText="JSON web запрос. Используйте %s в качестве параметра" text="http://jsoneditoronline.org/?json=%s" GridPane.rowIndex="1" />
-   </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <TextArea fx:id="logsTextArea" promptText="Здесь будет лог" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+        <HBox GridPane.rowIndex="2">
+            <children>
+                <TextField fx:id="commandTextField" prefHeight="25.0" prefWidth="371.0" promptText="Команда для получения логов" text="adb logcat -t 500" HBox.hgrow="ALWAYS">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </TextField>
+                <Button fx:id="listenLogButton" mnemonicParsing="false" onAction="#handleAction" prefHeight="25.0" prefWidth="107.0" text="Listen" HBox.hgrow="NEVER">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+        <TextField fx:id="prefixTextField" promptText="Строка для обрезки (прим. 12-06 05:38:57.454 1672-1755/ru.ireca.menu D/FA:)" GridPane.rowIndex="1" />
+        <HBox prefHeight="0.0" prefWidth="478.0" GridPane.rowIndex="3">
+            <children>
+                <TextField fx:id="webQueryTextField" prefHeight="25.0" prefWidth="372.0" promptText="JSON web запрос. Используйте %s в качестве параметра" text="http://jsoneditoronline.org/?json=%s" HBox.hgrow="ALWAYS" />
+                <Button fx:id="convertToJsonButton" mnemonicParsing="false" onAction="#handleAction" prefHeight="25.0" prefWidth="108.0" text="JSON" HBox.hgrow="NEVER">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
 </GridPane>
