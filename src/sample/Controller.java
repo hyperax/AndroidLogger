@@ -46,9 +46,10 @@ public class Controller {
             Process process = Runtime.getRuntime().exec(command);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-            String line = "";
+            String line;
             while ((line = bufferedReader.readLine()) != null) {
                 logsTextArea.appendText(line);
+                logsTextArea.appendText("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
