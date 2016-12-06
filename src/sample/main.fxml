@@ -33,7 +33,7 @@
         <TextField fx:id="prefixTextField" promptText="Строка для обрезки (прим. 12-06 05:38:57.454 1672-1755/ru.ireca.menu D/FA:)" GridPane.rowIndex="1" />
         <HBox prefHeight="0.0" prefWidth="478.0" GridPane.rowIndex="3">
             <children>
-                <TextField fx:id="webQueryTextField" prefHeight="25.0" prefWidth="372.0" promptText="JSON web запрос. Используйте %s в качестве параметра" text="http://jsoneditoronline.org/?json=%s" HBox.hgrow="ALWAYS" />
+                <TextField fx:id="webQueryTextField" prefHeight="25.0" prefWidth="372.0" promptText="JSON web запрос. Используйте %s в качестве параметра" text="http://jsoneditoronline.org/" HBox.hgrow="ALWAYS" />
                 <Button fx:id="convertToJsonButton" mnemonicParsing="false" onAction="#handleAction" prefHeight="25.0" prefWidth="108.0" text="JSON" HBox.hgrow="NEVER">
                     <HBox.margin>
                         <Insets />
