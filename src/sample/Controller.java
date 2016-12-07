@@ -65,8 +65,10 @@ public class Controller {
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                logsTextArea.appendText(line);
-                logsTextArea.appendText("\n");
+                if (!line.isEmpty()) {
+                    logsTextArea.appendText(line);
+                    logsTextArea.appendText("\n");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
