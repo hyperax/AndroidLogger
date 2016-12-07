@@ -20,7 +20,8 @@ public class Controller {
 
     public TextArea logsTextArea;
     public Button listenLogButton;
-    public Button convertToJsonButton;
+    public Button goToButton;
+    public Button clipboardButton;
     public TextField commandTextField;
     public TextField prefixTextField;
     public TextField webQueryTextField;
@@ -28,8 +29,26 @@ public class Controller {
     public void handleAction(ActionEvent event) {
         if (event.getSource() == listenLogButton) {
             loadLogs();
-        } else if (event.getSource() == convertToJsonButton) {
-            showJson();
+        } else if (event.getSource() == goToButton) {
+            copyToClipboard(extractTargetText());
+            goToWeb();
+        } else if (event.getSource() == clipboardButton) {
+            copyToClipboard(extractTargetText());
+        }
+    }
+
+    private void goToWeb() {
+        String query = webQueryTextField.getText();
+        if (!query.startsWith("http://")) {
+            query = "http://" + query;
+        }
+
+        try {
+            query = query.replace("%s", "");
+            URI uri = new URI(query);
+            Desktop.getDesktop().browse(uri);
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -56,7 +75,7 @@ public class Controller {
         logsTextArea.positionCaret(logsTextArea.getLength());
     }
 
-    private void showJson() {
+    private String extractTargetText() {
         int prefixLength = prefixTextField.getLength();
 
         String targetText;
@@ -67,7 +86,7 @@ public class Controller {
             IndexRange selectionRange = logsTextArea.getSelection();
             int lineStart = allText.lastIndexOf("\n", selectionRange.getStart()) + 1;
             int lineEnd = allText.indexOf("\n", selectionRange.getEnd());
-            targetText = lineEnd < 0? allText.substring(lineStart) : allText.substring(lineStart, lineEnd);
+            targetText = lineEnd < 0 ? allText.substring(lineStart) : allText.substring(lineStart, lineEnd);
         }
         String[] logRows = targetText.split("\n");
 
@@ -80,21 +99,7 @@ public class Controller {
                 logs.append(logRow);
             }
         }
-
-        String query = webQueryTextField.getText();
-        if (!query.startsWith("http://")) {
-            query = "http://" + query;
-        }
-
-        copyToClipboard(logs.toString());
-
-        try {
-            query = query.replace("%s", "");
-            URI uri = new URI(query);
-            Desktop.getDesktop().browse(uri);
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-        }
+        return logs.toString();
     }
 
     private void copyToClipboard(String str) {

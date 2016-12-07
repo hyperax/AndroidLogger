@@ -34,11 +34,12 @@
         <HBox prefHeight="0.0" prefWidth="478.0" GridPane.rowIndex="3">
             <children>
                 <TextField fx:id="webQueryTextField" prefHeight="25.0" prefWidth="372.0" promptText="JSON web запрос. Используйте %s в качестве параметра" text="http://jsoneditoronline.org/" HBox.hgrow="ALWAYS" />
-                <Button fx:id="convertToJsonButton" mnemonicParsing="false" onAction="#handleAction" prefHeight="25.0" prefWidth="108.0" text="JSON" HBox.hgrow="NEVER">
+                <Button fx:id="goToButton" mnemonicParsing="false" onAction="#handleAction" prefHeight="25.0" prefWidth="223.0" text="GoTo" HBox.hgrow="NEVER">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>
                 </Button>
+            <Button fx:id="clipboardButton" layoutX="381.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAction" prefHeight="25.0" prefWidth="223.0" text="Clipboard" HBox.hgrow="NEVER" />
             </children>
         </HBox>
     </children>
