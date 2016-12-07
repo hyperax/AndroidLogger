@@ -1,12 +1,11 @@
 package sample;
 
-import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.IndexRange;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 
 public class Controller {
 
@@ -61,11 +59,17 @@ public class Controller {
     private void showJson() {
         int prefixLength = prefixTextField.getLength();
 
-        String selectedText = logsTextArea.getSelectedText();
-        if (selectedText.length() == 0) {
-            selectedText = logsTextArea.getText();
+        String targetText;
+        String allText = logsTextArea.getText();
+        if (logsTextArea.getSelectedText().isEmpty()) {
+            targetText = allText;
+        } else {
+            IndexRange selectionRange = logsTextArea.getSelection();
+            int lineStart = allText.lastIndexOf("\n", selectionRange.getStart()) + 1;
+            int lineEnd = allText.indexOf("\n", selectionRange.getEnd());
+            targetText = lineEnd < 0? allText.substring(lineStart) : allText.substring(lineStart, lineEnd);
         }
-        String[] logRows = selectedText.split("\n");
+        String[] logRows = targetText.split("\n");
 
         StringBuilder logs = new StringBuilder(logRows.length);
 
