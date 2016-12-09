@@ -2,7 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.IndexRange;
+import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -25,6 +25,7 @@ public class Controller {
     public TextField commandTextField;
     public TextField prefixTextField;
     public TextField webQueryTextField;
+    public CheckBox removeNewLinesCheckbox;
 
     public void handleAction(ActionEvent event) {
         if (event.getSource() == listenLogButton) {
@@ -97,6 +98,9 @@ public class Controller {
         for (String logRow : logRows) {
             if (logRow.length() >= prefixLength) {
                 logs.append(logRow.substring(prefixLength));
+                if (!removeNewLinesCheckbox.isSelected()) {
+                    logs.append("\n");
+                }
             } else {
                 logs.append(logRow);
             }
